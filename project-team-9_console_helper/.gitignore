@@ -1,0 +1,6 @@
+.venv/
+build/
+helper.egg-info/
+assistant.egg-info/
+console_helper/__pycache__/
+Pdf/
