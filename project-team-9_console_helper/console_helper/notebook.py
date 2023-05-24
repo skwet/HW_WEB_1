@@ -1,8 +1,53 @@
 from collections import namedtuple, UserList
+from abc import ABC,abstractmethod
 from datetime import datetime
 
 Note = namedtuple("Note", ["tags", "date", "text"])
 
+class WorkWithNotebook(ABC):
+    @abstractmethod
+    def update(self):
+        ...
+
+    @abstractmethod
+    def add_note(self):
+       ...
+
+    @abstractmethod   
+    def remove_note(self):
+        ...
+
+    @abstractmethod
+    def display_notes(self):
+        ...
+
+    @abstractmethod
+    def iterator_notes(self):
+        ...
+
+    @abstractmethod
+    def find_notes(self):
+        ...
+
+    @abstractmethod
+    def sort_notes_by_tag(self):
+       ...
+
+    @abstractmethod
+    def add_tag(self):
+        ...
+
+    @abstractmethod
+    def change_note(self):
+        ...
+
+    @abstractmethod
+    def __len__(self):
+       ...
+
+    @abstractmethod
+    def remove_tag(self):
+        ...
 
 class Notebook(UserList):
     def update(self, notes):

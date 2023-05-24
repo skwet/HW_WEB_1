@@ -1,4 +1,5 @@
 import re
+from abc import ABC,abstractmethod
 from datetime import datetime, timedelta
 from collections import namedtuple, UserList
 
@@ -18,9 +19,59 @@ class Field:
     def __eq__(self, other):
         return self.value == other.value
 
-    # def __str__(self):
-    #     return self.value
 
+class WorkWithAddressBook(ABC):
+    @abstractmethod
+    def update(self):
+        ...
+
+    @abstractmethod
+    def add_record(self):
+        ...
+
+    @abstractmethod
+    def add_phone(self):
+        ...
+
+    @abstractmethod
+    def add_email(self):
+        ...
+
+    @abstractmethod
+    def add_address(self):
+        ...
+
+    @abstractmethod
+    def remove_record(self):
+        ...
+
+    @abstractmethod
+    def remove_address(self):
+        ...
+
+    @abstractmethod
+    def add_birthday(self):
+        ...
+
+    @abstractmethod
+    def delete_phone_by_index(self, name, phone_index):
+        ...
+
+    @abstractmethod
+    def delete_email_by_index(self, name, email_index):
+        ...
+
+    @abstractmethod
+    def upcoming_birthdays(self, days):
+        ...
+        
+    @abstractmethod
+    def find_records(self, search_term):
+        ...
+        
+    @abstractmethod
+    def show_contact(self):
+        ...
 
 class Phone(Field):
     """Клас --- необов'язкове поле з телефоном та таких один записів (Record)
@@ -60,7 +111,7 @@ class Email(Field):
 Record = namedtuple("Record", ["name", "birthday", "phones", "emails", "address"])
 
 
-class AddressBook(UserList):
+class AddressBook(UserList,WorkWithAddressBook):
     def update(self, records):
         self.data.clear()
         self.data.extend(records)
